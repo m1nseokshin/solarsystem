@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 검정색 배경 원 (Black circle background) -->
+  <circle cx="256" cy="256" r="256" fill="#000000" />
+  
+  <!-- 다이아몬드 (✦ 모양 4포인트 스타 스파크) -->
+  <path d="M 256 96 C 256 180 180 256 96 256 C 180 256 256 332 256 416 C 256 332 332 256 416 256 C 332 256 256 180 256 96 Z" fill="#ffffff" />
+</svg>
