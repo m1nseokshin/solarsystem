@@ -195,7 +195,7 @@ export default function SolarSystemScene() {
         speed={speed}
         onSpeedChange={setSpeed}
         simDateRef={simDateRef}
-        onSelectEvent={setSelectedId}
+        onSelectEvent={(id) => setSelectedId(id ?? null)}
       />
       <InfoPanel planet={selected} onClose={() => setSelectedId(null)} />
 
