@@ -12,15 +12,15 @@ export const site = {
 
 export const about = {
   introKo: [
-    "현재 부산대학교 디자인학과 디자인테크놀로지전공에 재학중입니다. 디자인과 기술의 조화를 고민합니다.",
-    "HCI를 핵심적으로 연구하여 모든 사람들이 더 나은 경험을 할 수 있도록 나아가겠습니다",
+    "현재 부산대학교 디자인학과 디자인앤테크놀로지전공에 재학 중입니다. 디자인과 기술의 조화를 고민합니다.",
+    "HCI를 핵심적으로 연구하여 모든 사람들이 더 나은 경험을 할 수 있도록 나아가겠습니다.",
   ],
   introEn: [
-    "Currently studying Design Technology in the Department of Design at Pusan National University. Exploring the harmony between design and technology.",
+    "Currently studying Design & Technology in the Department of Design at Pusan National University. Exploring the harmony between design and technology.",
     "Focusing on HCI research to create better interactive experiences for everyone.",
   ],
-  educationKo: "부산대학교 예술대학 디자인학과 디자인테크놀로지전공 재학 (2026.03 ~)",
-  educationEn: "Pusan National University, Dept. of Design (Design Technology Major) (2026.03 ~ Present)",
+  educationKo: "부산대학교 예술대학 디자인학과 디자인앤테크놀로지전공 재학 (2026.03 ~)",
+  educationEn: "Pusan National University, Dept. of Design (Design & Technology Major) (2026.03 ~ Present)",
   interests: "HCI / Web Development",
   philosophy: "",
   projectStoryKo: [
