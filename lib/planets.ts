@@ -45,6 +45,7 @@ export interface PlanetData {
   taglineKo: string;
   taglineEn: string;
   descriptionKo: string;
+  descriptionEn?: string;
   facts: PlanetFact[];
   hasRing?: boolean;
 }
@@ -123,6 +124,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The closest planet to the Sun",
       descriptionKo:
         "태양계에서 가장 작은 행성으로, 대기가 거의 없어 낮에는 430°C까지 오르고 밤에는 -180°C까지 떨어집니다. 한 번 자전하는 데 지구 기준 59일이 걸립니다.",
+      descriptionEn:
+        "The smallest planet in the Solar System. With almost no atmosphere, surface temperatures range from 430°C during the day to -180°C at night. Takes 59 Earth days per rotation.",
     },
     0.33,
   ),
@@ -144,6 +147,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The hottest planet in the solar system",
       descriptionKo:
         "짙은 이산화탄소 대기의 온실효과로 표면 온도가 465°C에 달합니다. 다른 행성과 반대 방향으로 자전하며, 자전 한 바퀴(243일)가 공전(225일)보다 깁니다.",
+      descriptionEn:
+        "Surface temperature reaches 465°C due to extreme greenhouse effect from dense CO2 atmosphere. Rotates backward relative to most planets, with a day longer than its year.",
     },
     4.87,
   ),
@@ -165,6 +170,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The only known planet with life",
       descriptionKo:
         "표면의 71%가 바다로 덮여 있는, 지금까지 생명이 확인된 유일한 천체입니다. 23.4°의 자전축 기울기가 계절을 만듭니다.",
+      descriptionEn:
+        "71% of its surface is covered by oceans, making it the only known body to harbor life. An axial tilt of 23.4° produces our familiar seasons.",
     },
     5.97,
   ),
@@ -186,6 +193,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The red desert planet",
       descriptionKo:
         "산화철 먼지 때문에 붉게 보입니다. 태양계에서 가장 큰 화산인 올림푸스 몬스(높이 약 22km)가 있으며, 하루 길이는 지구와 비슷한 24.6시간입니다.",
+      descriptionEn:
+        "Appears reddish due to iron oxide dust. Home to Olympus Mons (22km high), the largest volcano in the Solar System. Has a day length similar to Earth (24.6 hours).",
     },
     0.642,
   ),
@@ -207,6 +216,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The largest planet in the solar system",
       descriptionKo:
         "지구 1,300개가 들어가는 크기의 가스 행성입니다. 대적점은 지구보다 큰 폭풍으로 최소 300년 이상 지속되고 있습니다. 자전이 가장 빨라 하루가 10시간이 안 됩니다.",
+      descriptionEn:
+        "A gas giant large enough to hold 1,300 Earths. The Great Red Spot is a persistent storm larger than Earth. Fastest rotation speed with a day under 10 hours.",
     },
     1898,
   ),
@@ -228,6 +239,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The ringed gas giant",
       descriptionKo:
         "얼음과 암석 조각으로 이루어진 고리는 폭이 약 28만 km에 달하지만 두께는 수십 미터에 불과합니다. 밀도가 물보다 낮은 유일한 행성입니다.",
+      descriptionEn:
+        "Famous for its ice and rock ring system spanning 280,000 km in width. The only planet in the Solar System less dense than water.",
       hasRing: true,
     },
     568,
@@ -250,6 +263,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The sideways ice giant",
       descriptionKo:
         "자전축이 97.8° 기울어져 거의 누운 채로 공전합니다. 메탄 대기가 붉은빛을 흡수해 청록색으로 보이며, 태양계에서 가장 추운 대기(-224°C)를 가졌습니다.",
+      descriptionEn:
+        "Orbits nearly on its side with an extreme axial tilt of 97.8°. Cyan appearance caused by atmospheric methane. Has the coldest planetary atmosphere (-224°C).",
     },
     86.8,
   ),
@@ -271,6 +286,8 @@ export const PLANETS: PlanetData[] = [
       taglineEn: "The outermost planet",
       descriptionKo:
         "태양 빛이 지구의 900분의 1밖에 닿지 않는 가장 먼 행성입니다. 시속 2,000km가 넘는 태양계에서 가장 빠른 바람이 붑니다. 공전 한 바퀴에 165년이 걸립니다.",
+      descriptionEn:
+        "The most distant major planet receiving 1/900th of Earth's sunlight. Experiences the fastest winds in the Solar System (>2,000 km/h). One orbit takes 165 years.",
     },
     102,
   ),
@@ -294,6 +311,8 @@ export const HALLEY_COMET: PlanetData = planet(
     taglineEn: "The most famous periodic comet",
     descriptionKo:
       "약 75~76년 주기로 태양계 안쪽을 방문하는 타원 궤도의 얼음 혜성입니다. 태양에 가까워지면 얼음과 먼지가 승화하며 약 1억 km 길이의 아름다운 푸른 꼬리를 형상화합니다.",
+    descriptionEn:
+      "A famous icy comet visiting the inner Solar System every 75-76 years on a highly elliptical orbit. Sublimating ice and dust create a 100M km blue ion tail near perihelion.",
   },
   0.00000000022,
 );

@@ -2,12 +2,13 @@
 
 import { useEffect, useState, type RefObject } from "react";
 import { COSMIC_EVENTS, type CosmicEvent } from "@/lib/events";
+import { useLanguage } from "@/lib/i18n";
 
 const SPEEDS = [
-  { value: 0, label: "∥", aria: "일시정지" },
-  { value: 1, label: "1×", aria: "초당 1일" },
-  { value: 7, label: "7×", aria: "초당 7일" },
-  { value: 30, label: "30×", aria: "초당 30일" },
+  { value: 0, label: "∥", ariaKo: "일시정지", ariaEn: "Pause" },
+  { value: 1, label: "1×", ariaKo: "초당 1일", ariaEn: "1 day/sec" },
+  { value: 7, label: "7×", ariaKo: "초당 7일", ariaEn: "7 days/sec" },
+  { value: 30, label: "30×", ariaKo: "초당 30일", ariaEn: "30 days/sec" },
 ];
 
 type Props = {
@@ -30,6 +31,7 @@ export default function TimeControls({
   simDateRef,
   onSelectEvent,
 }: Props) {
+  const { lang } = useLanguage();
   const [label, setLabel] = useState("");
   const [showTimeline, setShowTimeline] = useState(false);
 
@@ -64,12 +66,12 @@ export default function TimeControls({
           onClick={handleResetToday}
           className="type-button-cap text-xs border border-hairline hover:border-foreground bg-surface/80 rounded-full px-3 py-1.5 text-foreground transition-colors flex items-center gap-1.5"
         >
-          Today (오늘) ↺
+          {lang === "ko" ? "Today (오늘) ↺" : "Reset Today ↺"}
         </button>
       </div>
 
       <p className="type-eyebrow text-muted">
-        시뮬레이션 날짜 · Simulation date
+        {lang === "ko" ? "시뮬레이션 날짜 · SIMULATION DATE" : "SIMULATION DATE"}
       </p>
 
       <div className="flex items-baseline gap-4">
@@ -86,7 +88,7 @@ export default function TimeControls({
           <button
             key={s.value}
             type="button"
-            aria-label={s.aria}
+            aria-label={lang === "ko" ? s.ariaKo : s.ariaEn}
             onClick={() => onSpeedChange(s.value)}
             className={`type-button-cap rounded-full border px-4 py-2.5 transition-colors ${
               speed === s.value
@@ -109,14 +111,14 @@ export default function TimeControls({
                 : "border-hairline text-foreground bg-surface/80 hover:border-foreground"
             }`}
           >
-            ✦ 주요 이벤트 타임라인
+            {lang === "ko" ? "✦ 주요 이벤트 타임라인" : "✦ Key Timeline Events"}
           </button>
 
           {/* 타임라인 드롭업 메인 팝업 */}
           {showTimeline && (
             <div className="absolute bottom-full left-0 mb-3 w-80 max-h-80 overflow-y-auto rounded-2xl border border-hairline bg-surface/95 backdrop-blur-md p-4 shadow-2xl z-50">
               <p className="type-eyebrow text-muted mb-3 border-b border-hairline pb-2">
-                우주 역사상 주요 날짜 (Timeline Events)
+                {lang === "ko" ? "우주 역사상 주요 날짜 (Timeline Events)" : "Key Astronomical Events"}
               </p>
               <div className="space-y-3">
                 {COSMIC_EVENTS.map((evt) => (
@@ -128,12 +130,12 @@ export default function TimeControls({
                   >
                     <div className="flex items-center justify-between">
                       <span className="type-caption font-bold text-foreground group-hover:text-foreground">
-                        {evt.title}
+                        {lang === "ko" ? evt.title : (evt.titleEn || evt.title)}
                       </span>
                       <span className="type-eyebrow text-muted text-xs">{evt.date}</span>
                     </div>
                     <p className="type-caption text-xs text-muted mt-1 line-clamp-2">
-                      {evt.description}
+                      {lang === "ko" ? evt.description : (evt.descriptionEn || evt.description)}
                     </p>
                   </button>
                 ))}
@@ -144,7 +146,7 @@ export default function TimeControls({
       </div>
 
       <p className="type-caption mt-2 text-muted">
-        1× = 1일/초 · 1 day per second
+        {lang === "ko" ? "1× = 1일/초 · 1 day per second" : "1× = 1 day per second"}
       </p>
     </div>
   );

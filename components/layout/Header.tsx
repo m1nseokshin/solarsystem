@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
 
+import { useLanguage } from "@/lib/i18n";
+
 const nav = [
   { href: "/", label: "Home" },
   { href: "/explore/", label: "Explore" },
@@ -19,6 +21,7 @@ function isActive(pathname: string, href: string) {
 
 export default function Header() {
   const pathname = usePathname();
+  const { lang, toggleLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -85,46 +88,74 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-10 sm:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`type-eyebrow transition-opacity hover:opacity-100 ${
-                mounted && isActive(pathname, item.href) ? "opacity-100" : "opacity-60"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        {/* 데스크톱 메뉴 & 언어 전환 스위치 */}
+        <div className="hidden sm:flex items-center gap-8">
+          <nav className="flex items-center gap-10">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`type-eyebrow transition-opacity hover:opacity-100 ${
+                  mounted && isActive(pathname, item.href) ? "opacity-100" : "opacity-60"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <button
-          type="button"
-          aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="relative z-[10000] flex h-10 w-10 items-center justify-center text-foreground focus:outline-none sm:hidden"
-        >
-          {/* 햄버거 3개 수평선이 제자리에서 'X'로 폼 변형되는 스무스 모핑 애니메이션 */}
-          <div className="relative flex h-5 w-6 flex-col justify-between">
-            <span
-              className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out origin-center ${
-                open ? "translate-y-[9px] rotate-45" : "translate-y-0 rotate-0"
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out ${
-                open ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out origin-center ${
-                open ? "-translate-y-[9px] -rotate-45" : "translate-y-0 rotate-0"
-              }`}
-            />
-          </div>
-        </button>
+          {/* 데스크톱 언어 전환 스위치 버틀 */}
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="type-eyebrow flex items-center rounded-full border border-hairline bg-surface/60 px-3 py-1 text-xs text-foreground transition-all hover:border-foreground"
+          >
+            <span className={lang === "ko" ? "font-bold text-foreground opacity-100" : "opacity-40"}>KO</span>
+            <span className="mx-1.5 opacity-20">|</span>
+            <span className={lang === "en" ? "font-bold text-foreground opacity-100" : "opacity-40"}>EN</span>
+          </button>
+        </div>
+
+        {/* 모바일 언어 스위치 & 햄버거 메뉴 영역 */}
+        <div className="flex items-center gap-3 sm:hidden relative z-[10000]">
+          {/* 모바일 언어 전환 스위치 버튼 */}
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="type-eyebrow flex items-center rounded-full border border-hairline bg-surface/60 px-2.5 py-1 text-xs text-foreground transition-all hover:border-foreground"
+          >
+            <span className={lang === "ko" ? "font-bold text-foreground opacity-100" : "opacity-40"}>KO</span>
+            <span className="mx-1 opacity-20">|</span>
+            <span className={lang === "en" ? "font-bold text-foreground opacity-100" : "opacity-40"}>EN</span>
+          </button>
+
+          <button
+            type="button"
+            aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="relative flex h-10 w-10 items-center justify-center text-foreground focus:outline-none"
+          >
+            {/* 햄버거 3개 수평선이 제자리에서 'X'로 폼 변형되는 스무스 모핑 애니메이션 */}
+            <div className="relative flex h-5 w-6 flex-col justify-between">
+              <span
+                className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out origin-center ${
+                  open ? "translate-y-[9px] rotate-45" : "translate-y-0 rotate-0"
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out ${
+                  open ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-white transition-all duration-300 ease-in-out origin-center ${
+                  open ? "-translate-y-[9px] -rotate-45" : "translate-y-0 rotate-0"
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* 모바일 전체 화면 딥 블랙 오버레이 (열릴 때 80% 이상의 오퍼시티가 부드럽게 짙어지며 나타나는 감성 페이드 이펙트) */}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { PlanetData } from "@/lib/planets";
+import { useLanguage } from "@/lib/i18n";
 
 type Props = {
   planet: PlanetData | null;
@@ -11,6 +12,7 @@ type Props = {
 const PEEK_HEIGHT = 120; // 미니 상태 높이 (px)
 
 export default function InfoPanel({ planet, onClose }: Props) {
+  const { lang } = useLanguage();
   const [shown, setShown] = useState<PlanetData | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -115,8 +117,12 @@ export default function InfoPanel({ planet, onClose }: Props) {
             {!isExpanded && (
               <div className="flex items-center justify-between w-full px-6">
                 <div>
-                  <p className="type-eyebrow text-muted text-xs leading-relaxed mb-0.5">{shown.taglineKo}</p>
-                  <h3 className="type-display-lg text-foreground text-3xl font-bold">{shown.nameKo}</h3>
+                  <p className="type-eyebrow text-muted text-xs leading-relaxed mb-0.5">
+                    {lang === "ko" ? shown.taglineKo : shown.taglineEn}
+                  </p>
+                  <h3 className="type-display-lg text-foreground text-3xl font-bold">
+                    {lang === "ko" ? shown.nameKo : shown.nameEn}
+                  </h3>
                 </div>
               </div>
             )}
@@ -142,13 +148,15 @@ export default function InfoPanel({ planet, onClose }: Props) {
             {/* 데스크톱 또는 모바일 확장 상태일 때 헤더 노출 (리드카피 → 타이틀 순) */}
             <div className={!isExpanded ? "hidden sm:block" : "block"}>
               <p className="type-eyebrow text-muted text-sm sm:text-base leading-loose mb-1">
-                {shown.taglineKo}
+                {lang === "ko" ? shown.taglineKo : shown.taglineEn}
               </p>
-              <h2 className="type-display-lg text-4xl sm:text-5xl font-bold">{shown.nameKo}</h2>
+              <h2 className="type-display-lg text-4xl sm:text-5xl font-bold">
+                {lang === "ko" ? shown.nameKo : shown.nameEn}
+              </h2>
             </div>
 
             <p className="type-body-lg mt-4 sm:mt-8 text-foreground-mute">
-              {shown.descriptionKo}
+              {lang === "ko" ? shown.descriptionKo : (shown.descriptionEn || shown.descriptionKo)}
             </p>
 
             <dl className="mt-8 sm:mt-10 border-t border-hairline">
@@ -158,12 +166,14 @@ export default function InfoPanel({ planet, onClose }: Props) {
                   className="flex items-center justify-between gap-6 border-b border-hairline py-3.5"
                 >
                   <dt>
-                    <span className="type-caption block">{fact.labelKo}</span>
-                    <span className="type-eyebrow block text-muted">
-                      {fact.labelEn}
+                    <span className="type-caption block font-medium">
+                      {lang === "ko" ? fact.labelKo : fact.labelEn}
+                    </span>
+                    <span className="type-eyebrow block text-muted text-xs mt-0.5">
+                      {lang === "ko" ? fact.labelEn : fact.labelKo}
                     </span>
                   </dt>
-                  <dd className="type-caption text-right">{fact.value}</dd>
+                  <dd className="type-caption text-right font-mono">{fact.value}</dd>
                 </div>
               ))}
             </dl>

@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import HomeScene from "./HomeScene";
+import { useLanguage } from "@/lib/i18n";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -79,6 +80,8 @@ export default function HomeHero() {
     { dependencies: [reduced], revertOnUpdate: true, scope: containerRef },
   );
 
+  const { lang } = useLanguage();
+
   return (
     <section
       ref={containerRef}
@@ -99,9 +102,19 @@ export default function HomeHero() {
           </p>
           <h1 className="type-display-xxl mt-3">Solar System</h1>
           <p className="type-caption mt-6 max-w-md text-muted">
-            실제 천문 계산으로 재현한 태양계.
-            <br />
-            스크롤해서 태양계를 여행해 보세요.
+            {lang === "ko" ? (
+              <>
+                실제 천문 계산으로 재현한 태양계.
+                <br />
+                스크롤해서 태양계를 여행해 보세요.
+              </>
+            ) : (
+              <>
+                Solar system recreated with real astronomical calculations.
+                <br />
+                Scroll down to explore the cosmos.
+              </>
+            )}
           </p>
         </div>
 
@@ -113,11 +126,23 @@ export default function HomeHero() {
         >
           <p className="type-eyebrow text-muted">Orbital Velocity</p>
           <p className="type-body-lg mt-2 text-foreground-mute">
-            지구는 초속 29.8km로 태양 주위를 돕니다.
-            <br />
-            <span className="type-caption text-muted">
-              Earth orbits the Sun at 29.8 km/s.
-            </span>
+            {lang === "ko" ? (
+              <>
+                지구는 초속 29.8km로 태양 주위를 돕니다.
+                <br />
+                <span className="type-caption text-muted">
+                  Earth orbits the Sun at 29.8 km/s.
+                </span>
+              </>
+            ) : (
+              <>
+                Earth orbits the Sun at a speed of 29.8 km/s.
+                <br />
+                <span className="type-caption text-muted">
+                  Completing one orbit every 365.25 days.
+                </span>
+              </>
+            )}
           </p>
         </div>
 
@@ -129,13 +154,23 @@ export default function HomeHero() {
         >
           <p className="type-eyebrow text-muted">The Sun · 태양</p>
           <p className="type-body-lg mt-2 text-foreground-mute">
-            태양계 질량의 99.8%를 차지하는 항성.
-            <br />
-            표면 온도는 약 5,500°C에 달합니다.
-            <br />
-            <span className="type-caption text-muted">
-              A star holding 99.8% of the system&apos;s mass.
-            </span>
+            {lang === "ko" ? (
+              <>
+                태양계 질량의 99.8%를 차지하는 항성.
+                <br />
+                표면 온도는 약 5,500°C에 달합니다.
+                <br />
+                <span className="type-caption text-muted">
+                  A star holding 99.8% of the system&apos;s mass.
+                </span>
+              </>
+            ) : (
+              <>
+                A star containing 99.8% of the mass in the Solar System.
+                <br />
+                Surface temperature reaches approx. 5,500°C.
+              </>
+            )}
           </p>
         </div>
 
@@ -147,13 +182,23 @@ export default function HomeHero() {
         >
           <p className="type-eyebrow text-muted">One Star, Eight Planets</p>
           <p className="type-body-lg mt-2 text-foreground-mute">
-            이러한 태양 주위를 여덟 행성이
-            <br />
-            저마다의 속도로 돌고 있습니다.
-            <br />
-            <span className="type-caption text-muted">
-              Eight planets orbit this star, each at its own pace.
-            </span>
+            {lang === "ko" ? (
+              <>
+                이러한 태양 주위를 여덟 행성이
+                <br />
+                저마다의 속도로 돌고 있습니다.
+                <br />
+                <span className="type-caption text-muted">
+                  Eight planets orbit this star, each at its own pace.
+                </span>
+              </>
+            ) : (
+              <>
+                Eight planets orbit around this star,
+                <br />
+                each at its own unique pace.
+              </>
+            )}
           </p>
         </div>
 

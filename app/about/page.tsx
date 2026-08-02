@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { about, site } from "@/lib/content";
-
-export const metadata: Metadata = {
-  title: "About | Solar System",
-  description:
-    "이 프로젝트와 만든 사람에 대하여. About this project and the person behind it.",
-};
+import { useLanguage } from "@/lib/i18n";
 
 const links = [
   { label: "Portfolio", href: site.portfolio, note: "m1nseokshin.github.io" },
@@ -16,18 +12,27 @@ const links = [
 ];
 
 export default function AboutPage() {
+  const { lang } = useLanguage();
+  const intro = lang === "ko" ? about.introKo : about.introEn;
+  const projectStory = lang === "ko" ? about.projectStoryKo : about.projectStoryEn;
+  const education = lang === "ko" ? about.educationKo : about.educationEn;
+
   return (
     <div className="bg-background px-6 pb-28 pt-36 sm:pt-44">
       <div className="mx-auto max-w-3xl">
         <RevealOnScroll>
-          <p className="type-eyebrow text-muted">The Person Behind</p>
+          <p className="type-eyebrow text-muted">
+            {lang === "ko" ? "The Person Behind" : "Developer & Project"}
+          </p>
           <h1 className="type-display-xl mt-4">About</h1>
         </RevealOnScroll>
 
         <RevealOnScroll className="mt-16">
-          <h2 className="type-eyebrow text-muted">This Project · 프로젝트</h2>
+          <h2 className="type-eyebrow text-muted">
+            {lang === "ko" ? "This Project · 프로젝트" : "This Project"}
+          </h2>
           <div className="mt-4 space-y-4">
-            {about.projectStory.map((p) => (
+            {projectStory.map((p) => (
               <p key={p} className="type-body-lg text-foreground-mute">
                 {p}
               </p>
@@ -36,22 +41,21 @@ export default function AboutPage() {
         </RevealOnScroll>
 
         <RevealOnScroll className="mt-16">
-          <h2 className="type-eyebrow text-muted">Developer : Minseok Shin</h2>
+          <h2 className="type-eyebrow text-muted">
+            {lang === "ko" ? "Developer : Minseok Shin" : "Developer : Minseok Shin"}
+          </h2>
           <div className="mt-4 space-y-4">
-            {about.intro.map((p) => (
+            {intro.map((p) => (
               <p key={p} className="type-body-lg text-foreground-mute">
                 {p}
               </p>
             ))}
-            {about.philosophy && (
-              <p className="type-caption text-muted">“{about.philosophy}”</p>
-            )}
           </div>
 
           <dl className="mt-10 border-t border-hairline">
             <div className="flex flex-col justify-between gap-1 border-b border-hairline py-4 sm:flex-row sm:items-center sm:gap-6">
               <dt className="type-eyebrow text-muted">Education</dt>
-              <dd className="type-caption sm:text-right">{about.education}</dd>
+              <dd className="type-caption sm:text-right">{education}</dd>
             </div>
             <div className="flex flex-col justify-between gap-1 border-b border-hairline py-4 sm:flex-row sm:items-center sm:gap-6">
               <dt className="type-eyebrow text-muted">Interests</dt>

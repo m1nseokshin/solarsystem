@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
   const pathname = usePathname();
+  const { lang } = useLanguage();
 
   // explore는 풀스크린 인터랙션 페이지 — 푸터 없음
   if (pathname.startsWith("/explore")) return null;
@@ -16,9 +18,9 @@ export default function Footer() {
         <div>
           <p className="type-button-cap">Solar System</p>
           <p className="type-caption mt-3 text-muted">
-            실제 위치 기반 3D 태양계 탐험
-            <br />
-            An interactive 3D solar system explorer.
+            {lang === "ko"
+              ? "실제 위치 기반 3D 태양계 탐험"
+              : "An interactive 3D solar system explorer powered by real planetary positions."}
           </p>
         </div>
 
